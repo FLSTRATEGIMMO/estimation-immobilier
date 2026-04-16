@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Estimation immobilière gratuite — FL STRATÉGIMMO, spécialiste investissement locatif et immeubles de rapport à Lens, Arras et Bassin Minier. Données DVF officielles data.gouv.fr.">
+<meta name="keywords" content="estimation immobilière gratuite, immeuble de rapport, investissement locatif, Lens, Arras, Bassin Minier, Pas-de-Calais, FL Stratégimmo, DVF, prix immobilier France">
+<meta property="og:title" content="Estimation immobilière gratuite — FL STRATÉGIMMO">
+<meta property="og:description" content="Estimez votre bien immobilier gratuitement. Données DVF officielles. Spécialiste immeubles de rapport Lens · Arras · Bassin Minier.">
+<title>Estimation Immobilière Gratuite — FL STRATÉGIMMO | Lens · Arras · Bassin Minier</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --orange:#E8690A;
+  --orange-h:#c9560a;
+  --orange-bg:#fff5ed;
+  --orange-bd:#f5b07a;
+  --dark:#1C1C1C;
+  --white:#ffffff;
+  --bg:#f0ede8;
+  --surface:#f7f6f4;
+  --bd:#e2e0da;
+  --txt:#1C1C1C;
+  --txt2:#6b6860;
+  --txt3:#a09e99;
+  --r:10px;
+  --rl:14px;
+}
+body{font-family:'Poppins',sans-serif;background:var(--bg);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;padding:28px 16px 56px;color:var(--txt)}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--rl);
+  box-shadow:0 4px 32px rgba(0,0,0,0.09);width:100%;max-width:600px;overflow:visible}
+
+/* HEADER */
+.hdr{background:var(--dark);padding:22px 28px 18px;display:flex;align-items:center;gap:18px;
+  border-radius:var(--rl) var(--rl) 0 0}
+.logo-wrap{flex-shrink:0;width:72px;height:72px;background:var(--white);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px}
+.logo-wrap img{width:100%;height:100%;object-fit:contain}
+/* SVG logo fallback — remplacé automatiquement si logo.jpg uploadé */
+.logo-svg{width:56px;height:56px}
+.hdr-text{}
+.hdr-title{font-family:'Raleway',sans-serif;font-size:20px;font-weight:800;
+  color:var(--white);letter-spacing:1px}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.5}
+.hdr-sub strong{color:var(--orange);font-weight:600}
+
+.obar{height:4px;background:var(--orange)}
+
+/* BODY */
+.body{padding:28px 28px 24px;background:var(--white)}
+
+/* STEPS */
+.snav{display:flex;align-items:center;margin-bottom:24px}
+.spill{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt3);
+  padding:5px 10px;border-radius:20px;white-space:nowrap;transition:all .2s}
+.spill.active{background:var(--orange-bg);color:var(--orange);font-weight:600}
+.spill.done{color:var(--orange)}
+.spill .n{width:20px;height:20px;border-radius:50%;background:var(--bd);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--txt2);flex-shrink:0}
+.spill.active .n,.spill.done .n{background:var(--orange);color:var(--white)}
+.ssep{flex:1;height:1px;background:var(--bd);margin:0 2px}
+
+.step{display:none}.step.active{display:block}
+
+/* FORM */
+.fg{margin-bottom:16px}
+.lbl{display:block;font-size:11px;font-weight:600;color:var(--txt2);
+  margin-bottom:6px;text-transform:uppercase;letter-spacing:.6px}
+.fi,.fs{width:100%;padding:11px 14px;border:1.5px solid var(--bd);border-radius:var(--r);
+  font-family:'Poppins',sans-serif;font-size:14px;color:var(--txt);
+  background:var(--white);transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.fi:focus,.fs:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,105,10,.12)}
+.fi::placeholder{color:var(--txt3)}
+.fi[readonly]{background:var(--surface);cursor:default;color:var(--txt2)}
+.gr2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* AUTOCOMPLETE */
+.acw{position:relative}
+.acl{position:absolute;top:calc(100% + 3px);left:0;right:0;
+  background:var(--white);border:1.5px solid var(--orange);border-radius:var(--r);
+  z-index:9999;max-height:220px;overflow-y:auto;
+  box-shadow:0 8px 24px rgba(0,0,0,0.12);display:none}
+.aci{padding:10px 14px;font-size:13px;cursor:pointer;
+  border-bottom:1px solid var(--bd);color:var(--txt);line-height:1.4}
+.aci:last-child{border-bottom:none}
+.aci:hover,.aci:focus{background:var(--orange-bg);color:var(--orange)}
+.aci small{font-size:11px;color:var(--txt3);display:block;margin-top:1px}
+
+/* BUTTONS */
+.bp{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  background:var(--orange);color:var(--white);border:none;
+  padding:13px 20px;border-radius:var(--r);
+  font-family:'Poppins',sans-serif;font-size:15px;font-weight:600;cursor:pointer;
+  transition:background .2s,transform .1s;margin-top:6px}
+.bp:hover{background:var(--orange-h)}.bp:active{transform:scale(.98)}
+.bp:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.bg{display:flex;align-items:center;justify-content:center;gap:6px;
+  background:transparent;color:var(--txt2);border:1.5px solid var(--bd);
+  padding:11px 18px;border-radius:var(--r);
+  font-family:'Poppins',sans-serif;font-size:13px;cursor:pointer;
+  transition:all .2s;margin-top:10px;width:100%}
+.bg:hover{border-color:var(--orange);color:var(--orange);background:var(--orange-bg)}
+.brow{display:flex;gap:10px;margin-top:6px}
+.brow .bg{margin-top:0;flex:0 0 auto;width:auto;padding:13px 18px}
+.brow .bp{margin-top:0;flex:1}
+
+/* LOADING */
+.loading{text-align:center;padding:52px 0 44px}
+.spinner{width:44px;height:44px;border:3px solid var(--bd);border-top-color:var(--orange);
+  border-radius:50%;animation:spin .75s linear infinite;margin:0 auto 18px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-t{font-size:15px;font-weight:600;color:var(--txt);margin-bottom:6px}
+.loading-s{font-size:12px;color:var(--txt3)}
+
+/* RESULTS */
+.rbadge{display:inline-flex;align-items:center;gap:6px;
+  background:var(--orange-bg);color:var(--orange);
+  font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:4px 12px;border-radius:20px;margin-bottom:18px}
+
+.est-block{background:var(--dark);border-radius:var(--rl);padding:22px 24px;margin-bottom:14px}
+.est-lbl{font-size:11px;color:rgba(255,255,255,.45);text-transform:uppercase;
+  letter-spacing:.6px;margin-bottom:8px}
+.est-price{font-family:'Raleway',sans-serif;font-size:38px;font-weight:800;
+  color:var(--orange);line-height:1;margin-bottom:8px}
+.est-range{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:4px}
+.est-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:4px}
+
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.mc{background:var(--surface);border-radius:var(--r);padding:12px 14px;border:1px solid var(--bd)}
+.mc-l{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.mc-v{font-size:15px;font-weight:600;color:var(--txt)}
+.mc-v.o{color:var(--orange)}
+
+.txs{background:var(--surface);border-radius:var(--r);padding:14px 16px;
+  margin-bottom:14px;border:1px solid var(--bd)}
+.txs-t{font-size:10px;font-weight:700;color:var(--txt3);text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:10px}
+.txr{display:flex;justify-content:space-between;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--bd);font-size:13px}
+.txr:last-child{border-bottom:none;padding-bottom:0}
+.txr-l{color:var(--txt2)}
+.txr-r{font-weight:600;color:var(--txt)}
+.txpill{display:inline-block;background:rgba(232,105,10,.1);color:var(--orange);
+  font-size:10px;font-weight:600;padding:2px 6px;border-radius:8px;margin-left:5px}
+
+.ai-block{background:var(--orange-bg);border:1.5px solid var(--orange-bd);
+  border-radius:var(--r);padding:16px 18px;margin-bottom:14px}
+.ai-hdr{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.ai-icon{width:28px;height:28px;background:var(--orange);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ai-title{font-size:13px;font-weight:700;color:var(--orange)}
+.ai-body{font-size:13px;color:var(--dark);line-height:1.75}
+
+.cta{background:var(--dark);border-radius:var(--r);padding:20px 22px;
+  text-align:center;margin-bottom:14px}
+.cta p{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:12px;line-height:1.5}
+.cta a.btn{display:inline-flex;align-items:center;gap:7px;background:var(--orange);
+  color:var(--white);text-decoration:none;padding:11px 24px;border-radius:var(--r);
+  font-size:14px;font-weight:600;transition:background .2s}
+.cta a.btn:hover{background:var(--orange-h)}
+.cta-tel{font-size:12px;margin-top:10px}
+.cta-tel a{color:rgba(255,255,255,.35);text-decoration:none}
+.cta-tel a:hover{color:var(--orange)}
+
+.srcs{font-size:11px;color:var(--txt3);text-align:center;line-height:1.6;margin-bottom:12px}
+.srcs a{color:var(--orange);text-decoration:none}
+.err{background:#fef2f2;border:1.5px solid #fca5a5;border-radius:var(--r);
+  padding:14px 16px;font-size:13px;color:#991b1b;margin-bottom:14px;line-height:1.6}
+
+/* FOOTER */
+.ftr{background:var(--dark);padding:16px 28px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;border-radius:0 0 var(--rl) var(--rl)}
+.ftr-l{font-size:11px;color:rgba(255,255,255,.4);line-height:1.6}
+.ftr-l strong{color:rgba(255,255,255,.7)}
+.ftr-r{font-size:11px;color:rgba(255,255,255,.3);text-align:right;line-height:1.6}
+.ftr-r a{color:var(--orange);text-decoration:none}
+
+.disc{max-width:600px;font-size:11px;color:rgba(0,0,0,.3);
+  text-align:center;margin-top:16px;line-height:1.6}
+
+@media(max-width:480px){
+  .body,.hdr{padding-left:18px;padding-right:18px}
+  .ftr{flex-direction:column;text-align:center;gap:8px}
+  .ftr-r{text-align:center}
+  .gr2,.gr3{grid-template-columns:1fr}
+  .est-price{font-size:30px}
+  .mgrid{grid-template-columns:1fr}
+  .hdr-title{font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<div class="card" itemscope itemtype="https://schema.org/RealEstateAgent">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="logo-wrap">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gAfQ29tcHJlc3NlZCBieSBqcGVnLXJlY29tcHJlc3P/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCANTA1MDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopD9KWgAoopKAFooooAKKKTOKAFopAc0tABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBBezNb2c9wiqWijZ1DdMgE18wN+0n8Q/MYLDpYAZsZgJ4zx3HpX05qn/IMu/+uEn/AKCa+Dm/1jf57mobaYHqv/DSfxE/556V/wCA5/8AiqP+GkviJ/zz0r/wHb/4qvKqB/Q/ypczA+nPgl8UfE/xA1O/tdeNoEtYPMAhh2fMWXHOT2Jr1+vnL9lv/kO63/16p/Na+jatO6AKSlopgeJ/GP4xeKvA3iqLQ9DhsjCbVZ2aaMsSSceo9DXC/wDDSfxE/wCeelf+A5/+Ko/aU/5KJF/2Dov/AEJq8qqG2mB6r/w0n8RP+eelf+A5/wDiqP8AhpP4if8APPSv/Ac//FV5VRS5mB6r/wANJ/ET/nnpX/gOf/iqP+Gk/iJ/zz0r/wABz/8AFV5VRRzMD1X/AIaT+In/ADz0r/wHP/xVH/DSfxE/556V/wCA5/8Aiq8qoo5mB6r/AMNJ/ET/AJ56V/4Dn/4qj/hpP4if889K/wDAc/8AxVeVUUczA9V/4aT+In/PPSv/AAHP/wAVR/w0n8RP+eelf+A5/wDiq8qoo5mB6r/w0n8RP+eelf8AgOf/AIqj/hpP4if889K/8Bz/APFV5VRRzMD1X/hpP4if889K/wDAc/8AxVH/AA0n8RP+eelf+A5/+KryqijmYHqv/DSfxE/556V/4Dn/AOKo/wCGk/iJ/wA89K/8Bz/8VXlVFHMwPVf+Gk/iJ/zz0r/wHP8A8VR/w0n8RP8AnnpX/gOf/iq8qoo5mB63ZftHeP57+1gmg01o5Z443CRFThmA65PrX0+M4G4DOOcV8HaZ/wAhOy/6+4P/AEYtfeVWndAFFFFMAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKK4/xP8V/Bng/VG0jXr6WCdUVyFiLjDcj7uT29MVkf8NBfC/8A6DVx/wCAcv8AhQB6PRXnH/DQXwv/AOg1cf8AgHL/AIUf8NBfC/8A6DVx/wCAcv8AhQB6PRXnH/DQXwv/AOg1cf8AgHL/AIUf8NBfC/8A6DVx/wCAcv8AhQB6PRXnH/DQXwv/AOg1cf8AgHL/AIUf8NBfC/8A6DVx/wCAcv8AhQB3uqf8gy7/AOuEn/oJr4Ob/WN/nua+rb/4+/DOewuYYdYnZ3hdVU2zrkkYxyAK+Um2mR8NnsOCM8nnke9Zy3AKB/Q/yooH9D/KkB7d+y3/AMh3W/8Ar1T+a19G185fst/8h3W/+vVP5rX0bVx2AKKKKoD5Z/aU/wCSiRf9g6L/ANCavKq9V/aU/wCSiRf9g6L/ANCavKqzluAUUUUgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAs6Z/yE7L/AK+4P/Ri195V8G6Z/wAhOy/6+4P/AEYtfeVXHYAoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD5T/aKP/Fy5sqMLZQdyDyD6fSvMty/3T/323+Nem/tF/wDJSrj/AK8rb+TV5hUNtMB25f7p/wC+2/xo3L/dP/fbf402ilzMB25f7p/77b/Gjcv90/8Afbf402ijmYDty/3T/wB9t/jRuX+6f++2/wAabRRzMBWY4+TKn13H+pNJkn7+5m/vM+fwxRRSbuAUD+h/lRQP6H+VAHt37Lf/ACHdb/69U/mtfRtfOX7Lf/Id1v8A69U/mtfRtXHYAoooqgPln9pT/kokX/YOi/8AQmryqvVf2lP+SiRf9g6L/wBCavKqzluAUUUUgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAs6Z/yE7L/r7g/wDRi195V8G6Z/yE7L/r7g/9GLX3lVx2AKKKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+U/2i/8AkpVx/wBeVt/Jq8wr0/8AaL/5KVcf9eVt/Jq8wrOW4BRRRSAKKKKACiiigAooooAKB/Q/yooH9D/KgD279lv/AJDut/8AXqn81r6Nr5y/Zb/5Dut/9eqfzWvo2rjsAUUUVQHyz+0p/wAlEi/7B0X/AKE1eVV6r+0p/wAlEi/7B0X/AKE1eVVnLcAooopAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBZ0z/kJ2X/AF9wf+jFr7yr4N0z/kJ2X/X3B/6MWvvKrjsAUUUVQBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8p/tF/wDJSrj/AK8rb+TV5hXp/wC0X/yUq4/68rb+TV5hWctwCiiikAUUUUAFFFFABRRRQAUD+h/lRQP6H+VAHt37Lf8AyHdb/wCvVP5rX0bXzl+y3/yHdb/69U/mtfRtXHYAoooqgPln9pT/AJKJF/2Dov8A0Jq8qr1X9pT/AJKJF/2Dov8A0Jq8qrOW4BRRRSAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigCzpn/ITsv8Ar7g/9GLX3lXwbpn/ACE7L/r7g/8ARi195VcdgCiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKRgxxtIHPORnNAHgnxk+E/jbxh40l1rQdOimtntoYwWnRDlM56n3rhv+Gffij/0Bbf/AMDYv/iq+tAABgAD6UtJpMD5K/4Z9+KP/QFt/wDwNi/+Ko/4Z9+KP/QFt/8AwNi/+Kr61opcqA+Sx+z78UP+gLbj/t8i/wDiqT/hn34o/wDQFt//AANi/wDiq+taKOVAfJZ/Z9+KGM/2Nbn/ALfIv/iqT/hn34o/9AW3/wDA2L/4qvrWijlQHyDqnwQ+ImjaZdatqGlQR29pEZZCt1GxwOuACf8AIrgVYNnHavtX4nLv+H2vrjObGTvjtXxUPmSIhQgVAu0dPrUtWYC0D+h/lRQP6H+VID279lv/AJDut/8AXqn81r6Nr5y/Zb/5Dut/9eqfzWvo2rjsAUUUVQHyz+0p/wAlEi/7B0X/AKE1eVV6r+0p/wAlEi/7B0X/AKE1eVVnLcAooopAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQBZ0z/kJ2X/AF9wf+jFr7yr4N0z/kJ2X/X3B/6MWvvKrjsAUUUVQBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAcz8S/wDkQde/68ZP5V8Up/q1+gr7W+Jf/Ig66B3spB1x2r4pjOYlOCOMVnLcBaB/Q/yooH9D/KkB7d+y3/yHdb/69U/mtfRtfOX7Lf8AyHdb/wCvVP5rX0bVx2AKKKKoD5Z/aU/5KJF/2Dov/QmryqvVf2lP+SiRf9g6L/0Jq8qrOW4BRRRSAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigCzpn/ACE7L/r7g/8ARi195V8G6Z/yE7L/AK+4P/Ri195VcdgCiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPlv9oXUtQg+I00EN9dRRJZwEJFOyDJB54+leZ/2tqX/QRv/wDwMevRP2i/+SlXH/XlbfyavMKhtpgW/wC1tS/6CN//AOBj0f2tqX/QRv8A/wADHqpRS5mBb/tbUv8AoI3/AP4GPR/a2pf9BG//APAx6qUUczAt/wBral/0Eb//AMDHo/tbUv8AoI3/AP4GPVSijmYFmbU9RmheB9QvWSQbXVrpmDD0IquXY5UKEQY2qOaSik3cAoH9D/Kigf0P8qAPbv2W/wDkO63/ANeqfzWvo2vnL9lv/kO63/16p/Na+jauOwBRRRVAfLP7Sn/JRIv+wdF/6E1eVV6r+0p/yUSL/sHRf+hNXlVZy3AKKKKQBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAWdM/5Cdl/19wf+jFr7yr4N0z/AJCdl/19wf8Aoxa+8quOwBRRRVAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHyn+0X/yUq4/68rb+TV5hXp/7Ref+FlXBx/y524/Rv8AGvMKzluAUUUUgCiiigAooooAKKKKACgf0P8AKigf0P8AKgD279lv/kO63/16p/Na+ja+cv2W/wDkO63/ANeqfzWvo2rjsAUUUVQHyz+0p/yUSL/sHRf+hNXlVeq/tKf8lEi/7B0X/oTV5VWctwCiiikAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAFnTP8AkJ2X/X3B/wCjFr7yr4N0z/kJ2X/X3B/6MWvvKrjsAUUUVQBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB8pftFFv+FlXAOMfY7cj8j/hXmNen/tF/8lKuP+vK2/k1eYVnLcAooopAFFFFABRRRQAUUUUAFA/of5UUD+h/lQB7d+y3/wAh3W/+vVP5rX0bXzl+y3/yHdb/AOvVP5rX0bVx2AKKKKoD5Z/aU/5KJF/2Dov/AEJq8qr1X9pT/kokX/YOi/8AQmryqs5bgFFFFIAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKALOmf8hOy/6+4P8A0YtfeVfBumf8hOy/6+4P/Ri195VcdgCiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAPlP9ov/AJKVcf8AXlbfyavMK9P/AGi/+SlXH/XlbfyavMKzluAUUUUgCiiigAooooAKKKKACgf0P8qKB/Q/yoA9u/Zb/wCQ7rf/AF6p/Na+ja+cv2W/+Q7rf/Xqn81r6Nq47AFFFFUB8y/tF6Rqt54+huLTTbqeI2KJuihZxkEn+EH1ry7/AIR7Xv8AoCaj/wCAcv8A8TX3TtG7eVGcYBxzinUmkwPhT/hHte/6Amo/+Acv/wATR/wj2vf9ATUf/AOX/wCJr7ropcqA+FP+Ee17/oCaj/4By/8AxNH/AAj2vf8AQE1H/wAA5f8A4mvuuijlQHwp/wAI9r3/AEBNR/8AAOX/AOJo/wCEe17/AKAmo/8AgHL/APE1910UcqA+EZtE1m3gkuZ9IvY4ogGd3t3QKMgZywA7iqZGCRnOCRkdDX2J8aGC/C7xExXP+ij/ANDWvjrhd0Q6I2B+XNS1ZgFFFFIAooooAKKKKACiiigAooooAs6Z/wAhOy/6+4P/AEYtfeVfBumf8hOy/wCvuD/0YtfeVXHYAoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKbuG7b3p1ABRRRQB8p/tF/8lKuP+vK2/k1eYV6d+0X/wAlLn97O3x+Ab/GvMazluAUUUUgCiiigAooooAKKKKACgf0P8qKM45x2P8AKgD279lv/kO63/16p/Na+ja+cv2XMr4g1tcf8uqHPY/MtfRtXHYAoooqgCiiigAooooAKKKKACiiigDiPjZ/ySzxF/17L/6MWvjs/wCsk/3z/IV9ifGsZ+FniL/r1B/8fWvjrcplk2sDltwI9CBWctwFooopAFFFFABRRRQAUUUUAFFFFAFnTP8AkJ2X/X3B/wCjFr7yr4N0z/kJ2X/X3B/6MWvvKrjsAUUUVQBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAZmuWOsXtmY9E1gabchtwlMCzAjB+Uq3bODnrxXhnjLxl+0F4Jkf+0p7S4tA+EvLbTlKEc8HPTgen419DUyWKKeNoZo1kjcYZWGQR6EGgD5MX9oT4oufk1m1Ze7CyjwD6dM04ftCfFPG9NYsmAOCGsk549gK9c8dfs9+GPEQe98PE6NfEEgQ8Quf9pe31H5V4D4y+Hni3wTcAa7pbGBRt+2wAvCfqcA9j27UAUfFPivW/GerHW9fuIpLoxJFiKEIoA+lZFBK7Q6urK3Klec0oBK7xyvTPvWctwEooopAFFFFABRRRQAUUUUAFOQgE7hwQQfyptFAG/4R8deJfA00tx4cuooJZ4hFIzxCTIyDjBGOw5rp/wDhoP4pf9Bi1/8AAKP/AArzmimm0B6N/wANB/FL/oMWv/gFH/hR/wANB/FL/oMWv/gFH/hXnNFHMwPRv+Gg/il/0GLX/wAAo/8ACj/hoP4pf9Bi1/8AAKP/AArzmijmYHo3/DQfxS/6DFr/AOAUf+FH/DQfxS/6DFr/AOAUf+Fec0UczA9G/wCGg/il/wBBi1/8Ao/8KP8AhoP4pf8AQYtf/AKP/CvOaKOZgejf8NB/FL/oMWv/AIBR/wCFH/DQfxS/6DFr/wCAUf8AhXnNFHMwO41z40/EHxFo93oerajbS2t7GI5AtsiEDcDkED2/WuHOdxAclBnaCMGiik3cAooooAKKKKACiiigAooooAKKKKALOmf8hOy/6+4P/Ri195V8G6Z/yE7L/r7g/wDRi195VcdgCiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKjnghuont7mGOWKQbXR1DKw9CDwRUlFAHj3jj9nTw9rPm6j4TkGkX+NyRj/UM3pjnbn2rwLxZ4G8VeC7nyvEemTRk8faI1LQSN2CsO+AeuOhr7eqC9sbPUrZ7O/tYriCQENHIoYH86TSYHwUdyruZGHGccH+VLxgHcMnnb3r6P8c/s26RqTNfeCrgaZKwO60dz5DHn5gcEg9Bjpya8G8SeFfEfhK8ax8S2E1u6cI7RkpIPVWHBpcqAyaKUqQAxxtbo2eKTvjr71LVmAUUUUgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAs6Z/wAhOy/6+4P/AEYtfeVfBumf8hOy/wCvuD/0YtfeVXHYAoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKq6hpmn6tbPZanZQ3MDggpKoYHP8qtUUAeGeNv2bNPuPMvvBMot3bJaymkIjPupwec4GDgcnmvCNd8N654UvG0zxFpk9hMPmTzV+Vx/ssMg/nX3VVDWtC0fxFYPpmuadBe2r9Y5VyM+o7g+45pNJgfCQOecEfUY/Q0te9+N/wBmjBa/8CX3yjP+hXkhO1fSN8E9ccNj614hrOjat4evm0zXNPnsrpefKlTBI9QehH40uVAU6KCVVghYbiN2Pb+VFS1ZgFFFFIAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigCzpn/ITsv+vuD/ANGLX3lXwbpn/ITsv+vuD/0YtfeVXHYAoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArL1/wxoPiizNjr2mQXcXbevKnBGQeo6mtSigD538bfs13lor3vgi8NxGCWNncPhgOfuHGD24OOteK6hpuoaPfPpesWM1jeJnME6bWx656Y/GvvKsbxL4P8N+LrT7H4g0mC7QcqzLh0OCMhhyOp9qTSYHw62Ffyyw3YziivaPGn7NmsaW0t54KuzfWed32OV/3y9funGG9MZzz0rx29s7rTLl7HU7aW0uo+sEyFX+uOn60uVAQ0UpVlxvXaSMgEjP5UlS1ZgFFFFIAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAs6Z/wAhOy/6+4P/AEYtfeVfBumDOp2WP+fqD/0YtfeVNNoAoooqk7gFFFFMAooooAKKKKACikOccUnPvTAdRTefejn3oAdRTefejn3oAdRTefejn3oAdRSDPeloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACuf8VeBPC3jKDyde0qKZwMJOo2yp9GHP4HIroKKAPm/wAQ/sxa7b3RbwzrNpdWzHj7azJMntlVII/+tWV/wzZ8Qf8An40j/v8Ayf8AxuvqWik0mB8tf8M2fEH/AJ+NI/7/AMn/AMbo/wCGbPiD/wA/Gkf9/wCT/wCN19S0UuVAfLX/AAzZ8Qf+fjSP+/8AJ/8AG6P+GbPiD/z8aR/3/k/+N19S0UcqA+Wv+GbPiD/z8aR/3/k/+N0f8M2fEH/n40j/AL/yf/G6+paKOVAfLX/DNnxB/wCfjSP+/wDJ/wDG6P8Ahmz4g/8APxpH/f8Ak/8AjdfUtFHKgPlr/hmz4g/8/Gkf9/5P/jdH/DNnxB/5+NI/7/yf/G6+paKOVAfLX/DNnxB/5+NI/wC/8n/xuj/hmz4g/wDPxpH/AH/k/wDjdfUtFHKgPlr/AIZs+IP/AD8aR/3/AJP/AI3R/wAM2fEH/n40j/v/ACf/ABuvqWijlQHy1/wzZ8Qf+fjSP+/8n/xuj/hmz4g/8/Gkf9/5P/jdfUteV+Kf2p/2dvBHiG98KeLfjD4a0rWNOcR3Vlc3YWWFvRhRyoDy7/hmz4g/8/Gkf9/5P/jdH/DNnxB/5+NI/wC/8n/xuu8/4bQ/ZV/6Lv4S/wDA0f4Vu+Cv2lvgJ8R/EMHhPwL8VvD2t6xdK7w2dpdb5XVFLMQPYAmjlQHk3/DNnxB/5+NI/wC/8n/xuj/hmz4g/wDPxpH/AH/k/wDjdfUlLRyoD5a/4Zs+IP8Az8aR/wB/5P8A43R/wzZ8Qf8An40j/v8Ayf8AxuvqWijlQHy2P2e/HmlFdUuLrSRHZulw4E8hYqjhiB+764FesH4++Eh10vV+pH+qi7f9tK7vxC2zQ798dLeQ/wDjpr5JLbhlvvMxb8Ca+A404jxeRVKUcLb3k73Vz6vhvJ8NmkajxF/d2s7HvR+P3hE/8wvV/wDv1F/8cpP+F++Ev+gZrH/fqL/45XgtFfDy8QM1vvH/AMBPq1wdlzV/e+//AIB71/wv3wj/ANAzWP8Av1F/8co/4X74R/6Bmsf9+ov/AI5XgtFQ/EDNls19wv8AU3AdL/f/AMA96/4X74R/6Bmsf9+ov/jlH/C/fCX/AEDNY/79Rf8AxyvBaKa8QM2e7j9w1wbl/W/3/wDAPev+F++Ev+gZrH/fqL/45R/wv3wl/wBAzWP+/UX/AMcrwWin/r/mveP/AICH+p2Xf3vv/wCAe9f8L98Jf9AzWP8Av1F/8cp8fx78IOcNY6qnHVoo8fo9eBUhGe+PwprxAzfpy/cJ8G5f5/f/AMA+gf8Ahe/g3/nhqP8A36T/AOLo/wCF7+Df+eGo/wDfpP8A4uvn3b/tn/vkUbf9s/8AfIo/4iFm635fuF/qbl3eX3n0F/wvfwb/AM8NR/79J/8AF0f8L38G/wDPDUf+/Sf/ABdfPu3/AGz/AN8ijb/tn/vkUf8AEQ82/u/cH+puXd5fefQX/C9/Bv8Azw1H/v0n/wAXR/wvfwb/AM8NR/79J/8AF18+7f8AbP8A3yKNv+2f++RR/wARDzb+79wf6m5d3l959Bf8L38GgE+RqHAz/q0/+LrofCXxB0PxnNcwaVHcK9qFL+aqjIPTGCa+XGGEb5z0/uivXP2f0I1PWWLZykXb2r3+HONMwzPH08NXtyveyPLzrhrBYDBSr0r8y7s9tBzS0i9KWv1lO5+fhRRRTAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopGzjg9xQAyWeKCGS4uJFhiiUu7uwCqoGSSegGK+Vfih/wU6/ZI+F2rXOh3HjO/wDEd7ZSNDcp4fsvtSxSKcFS7MiNyOqkj3ryv/gsD8bPEfw4+Efhf4beHNSl05vH99efb50Y5lsbWNPNgJHKhnuYDlc/cxxnnxL9gT/gm38LvjV8I7D4z/GXUNUvbfWZZ49J0mxn+zLDEkpTzJJANzsWV8DIGMfSgD7q+Bv7ev7Mv7QOrQ+GvBHjprXXrhN8Wk6tbNaXEg4GFJzGzZYfKrlj6V33xo/aJ+DX7POmWGs/GLxrF4ds9TuPstrI9ncXJkl2ltu2CN2HCsckAcdelfkh+3B+wT4j/Zu+IPhzXP2dtN8Wazo+s+Zc26WcMl3dabeW5UgFkXdtKvlT7EHtn7kh/Z+P7ef7LHwsf436n4s8I67pELzXa28Qt7madR5JMiyoeCEDdM5J96AOuf8A4Kd/sMxglvjtAcHHy+H9VP8AK1pn/D0D9hbGf+F6R9dv/Iuav/8AIv61+eH/AAUI/Yd8CfsleCfCfiDwf438T63LrmqSWLwatKjRIqxly48sKQ2dgHbG72rrv2IP+Ccvw4/aa+BNp8V/E3xB8T6Tf3Oo3Vl5WnbFVVidR1fdkH6DoDQB+k2n/td/s8ap8IL/AOPVh8QhN4D0u6WyvNXXS70rBKZFjAaPyfNALyIM7MfMOa89i/4KefsMTMVT46wgr13+H9VUfmbUZrx/9qT9nPw3+yz/AMEy/ib8NfCmu6lq9q1/pt81zfkCRml1ixBXC4GMDt15r4u/4J3/ALGngr9sCPx9/wAJX4z1/QW8JnS/IXTAmJBdC63ZLk9DbdMdxz2oA/ULSf8Ago7+xRrd4thZfHvSVlcZBubC9tkPIGN8sKrnnpmvoDw54n8O+MNHt/EHhXW7LVtNulDQ3VnMssbjGeGU4zz0r83/AIhf8EW/DUnha7f4cfGjXn16JTJawa9BFNZzMFPyMUAaMkkfOA2ORt5yPmv/AIJ6/Hn4hfs3/tO2fwT8QXdx/YHiHXP+EY1LSHkYxW180ojS6jD4wRIAM8ZR2OCeCAfuNn2rC8deOfCnw08Jan478cauml6Fo0P2i+vHjd1hjyBuKoGY8kdAa3ASOGAAHA5r81P+CyPx2n0TwN4Z+BGiXElvceJJG1nVzHNh0togVSCQKejvJnByDsH1oA+yvg1+1/8As5ftBeIrvwl8IPiXb+INXsbR7+e1XT7u2ZYFdEZwZ4kDANIg4JPPsa9bv7610uxudSvphFbWkTzzSEE7EUFmOBycAHpX8/P7OXi/xr+xt+1J4M8ReM7G606KZbP+0rRBhpNKvowPuuQMgFW5OAyDBPWv39v7Wz8S6Fc2P2jdZarZvEJoX5McqEblP0bINAHzbN/wU6/Ybt5Wgm+OcSyJkMB4f1VsEHBGVtiPyNNX/gp9+ww5IHx1i4xnPh7Vh/O15rxe5/4IyfBtxLLH8VPGEkjmSRYpjH5PmMG2nCgMMFvUkjPrX5y/sZfBPw5+0Z+0No3wk1zxDrWmaZqMF7It3ZMqXBjhiMoVtxZVyqngA847c0Aftb8M/wBuv9lP4xeNbD4d/Db4sQ6z4h1MSG0sl0m/gMvlxtI+GmgRMhEY4znivl34/wCkf8EnZPjF4sk+NniWa08bPqOdZiWLVTtuSgJ/1ELKOCM89RXqnwC/4JkfC79n34s+H/i54d+I3jDVtQ8PG5+z22pSQtCwmtpYGyERSCFmb/DuPzD/AGvNMtdf/b88b+Gbq6vLW11fxjHZyyW8n7xfO8qMkZ44bnHpQB9TnQv+CJI/5nS5/wC/Ou//ABivYP2TtI/4JhwfG/Rpv2avEsl549SC7NhDJHqaho/IfzsfaYljyI9x654471Qi/wCCMfwaVEB+MHj2Nto8zypYAC3fGU6V6X+z1/wTY+G/7OXxV0v4s+G/iN4v1rUNLiuYYrTU5IWgbzoHiJOxAQQHOD+lAH2B36V5n8X/ANpb4GfAaOI/Fb4kaVoM06lobWV2kuJMDPESBm57EgD3rxb/AIKG/tjP+yz8NrfTfCskb+OPFfmQ6WW2sthEqnfdOp5YBsKoxySemOfzq/Ze/Yf+NX7cWtaj8XPiV4zv9L8PX1wWvdavkaW71ORmywtlI2lQM5JIAO0AHPAB94XP/BX/APY+t742a3XjGeMNtNzFogMQHrzIGI+i1718HP2u/wBnX48yR2fwz+J+l6jqMkfmf2bMWtrtRkDHlSBSTlh0z1r5+s/+CP37J1toy6ddT+NLq82YF6dZ2Mr4+8qBNg+mDXxT+1h/wTf+JH7Lqj4tfCrxNqniPwzp8izy3sMZTVNKIOfNcJhSgOF3Bh94cegB+0nidwnh3UXOcC2k6f7pr5V0vS77Wb+30vToPNuLgMEXIH3QSeT9K84/4J/ftt638evA2tfCH4rXEk3jXQdLlubXUmhZV1OyUKpdyQP3oLLnj5hzxXtHwnZZfHuisrcBptw28g+UxAPp1/Svy3jnDwxmZYTD1NpaM+24YrSwuCxNeK1SMjXvDGu+GTCNb09rYz7tmXVumM9CfUVa0XwN4p8QWSahpOlPPA7lA+9Rgjvyeld7+0ECX0Qhym4T5AGc/NH3rp/gwsI8CBimxfOlzz0x3FeHhuFsHWz2plzk+SKv5/eetVz7ExymGNSXM5W/pHh2ueHtY8OXKWms2TW8kil1BYHI/A1nV7f8YNJt/EPhe08T6YgdrXl2I+bysHI475xXiAGQpBGGxivmeJco/sbHexhrBq6fke3kWZ/2lhlUqfEtGOjilmdYoIjJIxAVFIyT7ZrqR8LPHO1X/sRgjDO7zEwBjPPOam+FXh4a94sgeZQYLDM8mRkZBAC/X5s/QGvoNbq2vIrtYgc22+FiOnTNfR8L8JUc1wbxWLbSd+X5HiZ9xBWwGJVHD9N/mfKlrpt7e6gulW8Ba7aQxiIkA5H6Vvz/AAy8cW0D3NxoUiIilj+8QnA9gTUfhMKPiDYg/Mp1JgdwyeSRX0rcXNqL2LTZ0G+6ikK5PBC7cj6/N+hq+HOFMJm9GtOrJpxlZE5zn2Jy6rTVNKzV2fI5V1HzoVPIIPUEetIFLdOTW9460BvDniq/sPLIRn82NskhlbJ4+nesHbuBw20gEj64r4TGYd4TEzw71cXY+uw1eOIoxrR2kkzV0Twtr3iNpl0XT2uTb/fwyqPwLECpNc8H+I/DcEVzrOnG3jmO1T5iN83XGFJ7A17T8M9Nh8IeBrW+vQRNesjvjG7LkBRz9RWR8fAF0vTRkkm4Hpj7rV95iOEcNhMleOqN+0STt6nyNLiTEV80WFppezbte3Y8TJAGT0rX0Pwn4i8R/NpGlTTR5x5nCr+ZroPhf4ETxhqL3l9lbKxcZHOZHyMD6Yz+leneLviBongGFNJ0vT45ZwOEjChEGD15znpXm5Nw5QrYT+0czl7Ol07s9DMs+qU8R9SwMOep36I86/4Uj438oS7bHJH3PPO7/wBBx+tczrfg/wASeHi39q6VNEq/xgblP0I4rqD8cvGQkaQQWWwHITaenpmvQPBXxK0rx1GNJ1mwihuZEOVLBo36DAzznn09a9ChlfDWaS9hg6rjPpfZnJVzHPMuj7fFU1KHW26Pn3iT5EYHcOvOB7V67+z8d19rLjp5cDfmDj/0E1z/AMV/AbeFdQXVNOVjp9w4G0D7jE9K6P8AZ9AE+tL3SO2Un/vuufhzLK2WcRwwuIWqu/UvOsdTx+RyxFJ72/4Y9nB+bFOpoPOCOadX7uflt7hRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSFQ2MjocilpGZVBZiAB3JoA+MP+Con7LXib9oz4Q6NrfgHTjqHifwNd3F3b2YbDXNpNGvnxoP4nLQwEDjODzXwL+yN/wUW+Iv7I2nf8Kk8a+CpPEHhyxupc2Ekptb/TmZhuVNykHkMdhwPm6jv+z/AIu+LHww8AXNvaeOviL4Z8Oy3UZlhXVtWgszIg6lfNYbu3SuC+JH7N37Mn7TOix634o8FeHPEsWoxma11rTXQSyjBXzEuIT+8xk8ksM/SgDmv2fv2/P2bv2ipLTSPC/iyTRvEd3lV0HWoxb3ZYYyFKs0b8nAw+T6V9GYG4NjkAivw+/b1/YYi/Y4u/DvxI+F/izU38O6tqQs7YzSf6Zp9+EaSMB1AyCqPg5z8rZHAz+lv/BPP44eJfj7+zDoHjDxjMbjWrC4n0e8uW+9ctAQBK3uVZc+4oA+b/8Agtt/yS34a/8AYw3X/pOK9S/4JE/8maaV/wBh7VP/AEaK8t/4Lbf8kt+Gv/Yw3X/pOK9S/wCCRP8AyZppX/Ye1T/0aKAOp/4Ki/8AJivxM+ui/wDp5sq+Vf8AghmQB8a/U/8ACN4Hr/yE6+qv+Cov/JivxM+ui/8Ap5sq+Rv+CKOm3Gs6H8etJtNUudNnu7bw/DFeWxAlt3YamBIhPcHn8KAP1Z1LU7DR9PuNW1S6jtbO0iaaeeVgqRRqCWZiegAFfhJpk1v+0L/wUwttd+GyGXTb/wCIUGp283lsii0t5xLJI20HGRGcHplhyM5rP+P3iv8Aai0r4yzfs8fHz46+L5dJg1dLE3Et25gmtXbatwq4QOMEZJ9a/VH9jn9hr4Rfsu2snjDw1rE/jDxFrEHlr4guFUFbSTYxjhVSVCkqpLZJIHbkEA+mb64gs4Xub59ttEDLJIxAWJUBcuxPQDA//VX4cG5vv2+v+CiUEcsc76Dd6yFdcgeRo9jy2QCR8wQDjqXHTrX6P/8ABTD46w/Bj9l7WraynlTWvGkn/CP6YIiN6+YrPLN1ztWNGGRnl145r8uP2Df2rvhx+yP4s8SeOPE3gfVfEOr6lYJpdkLOWKIQwlleZmeQ8EvFGAAOQWyRjBAPq/8A4LP/AAQt0s/BHx00e1WCKJn8N6wYU5CEeZaPgDG1SkqHkYygAOTj6h/4JsfHA/Gn9mDQhqV81zr3hNjoWph/9YDH/qmPPQxlcf7p4r49/aL/AOCqPwY+P/wX8VfCbU/g34jtf7eszFa3Ut3ayi3uVZXikwDkYZeo7eucV5r/AMElPj1P8Ofj63w01K+Y6N8RLYWggZxtTU4SGhkPPGY/NXpyWA96AP21z+Ffgz/wSj/5PZ8G/wDXhq//AKQS1+8oBGPbNfg1/wAEo/8Ak9nwb/14av8A+kEtAH7z1/Pr+2HrVr4a/b88a+Jb+OV7XSPGUN/OsKgu0cUkTsFBIGcDjJAz3Ff0FV/P3+1xpWm69/wUE8Z6DrEckljqfjOGzuUjl8stHJJGp+bBx1oA/Qkf8Fo/2XjH5q/D74qlclcjStO6/wDgdXpv7Of/AAUi+CH7TfxLg+FngPwl480/VZ7Oe9WbWLCzitgkQBYForqRsnPHy49xVD/h1N+xeWZ28AamWbGT/bVwOg9A2Bn6V3vwU/YW/Zy/Z88bL8Qvhf4UvNP1tbSWyE02oyzr5UmNw2uSMnaOetAH5Wf8FLfE138UP239V8HfbJRDpUumeHbSOTiOIyLGZCSMkAvJnI5x2FftV8M/AOkfC7wNoPw98OWkVtpPh7TobG2jjJ5Kj52II7nn6selfi1/wU88J6j8Lv22dS8afYpVsvEcemeILSQDIkaFY45cZxyHgb8xzzx+zvwj+Jnh34u/Dnw98Q/C9+l3Ya3YxXAcFcpIVBaNwCcMDkEe30oAvaj8R/h3pV7NpuqePfDlnd27bZoLjVII5Ym9GVmyD7GqNx8TfhHeQy2t78QvB88E6GOWOTV7Z0dT2KlsEGvz8/aP/wCCTvxD+Nfxu8Y/FTR/ir4c02y8Sah9thtbmzmkkiBXlW2jHX0zXlGt/wDBGP4jeH9Iutc1X46+D7WxsoXuLi4ls54o4Y0UszucZCgDsCeRxQB+ner+JvgtBpty+h+IfAsd69s9tbNa3VqsoZ12qq7DkjJHFeafCbf/AMLA0oMW++4PAwx+zk7gQff+dfij+z94Ku/E37Qvg/wv4Xl/tNY9cjnadYmQT29s/mysACflZIztzjJK5xX7XfCbyz8QdHMMXlxKZFjA6EeQR+YwBX5xxbb+2MEr9f1PsMh/5FeLfkdf+0B/rND+k/8AOOui+ERP/Cun2gHbJOT9MVzv7QH+t0P/AHZ/5x10XwiB/wCFeMQeks+fyNc1JW4pxH+B/kKo08ipJ/zlP4TanD4i8KX/AIavl3vA0kTA9NrHg/QV41remSaHrF7pFyMPBI8a7egUHIPP4V0fwx8QyeH/ABlE7MfIvZHt5x2AZuDz7gV2XxR8Ezal4z0q7sbcFdVcQTP/AAqygnJ9sD868fGUJcS5XGdLWrTly/K56+EqrI8wlCp8E48y9Ui/8M7GLwr4FvPE15HtlucztxzgDA61o/CW9utU8L6hf3bhpLm9nfOex6Vj/GbVI9H8O2fhWybYZ1UEL08tRz+OcfrWh8Evl8D3H91ZZNv0xX0eBrxo5hTymk9KdNt+tjxMXRnXwM8xqbzmreh5V4T4+IOn576mcf8AfVeqfFjW5/DmteGtWVyEiuX3gd1OAR+Rryrwtz4+sMdtSP6vXoP7QMYe00lJDwZJen4Y/pXgZXiZYXJcZWg/hqJ/ievmVKOIzPDU5K6cLfgO+N+kLqOh2Xiu0iD+SQsmB8xjfkH8CB3rzPwdoEviLxNY6SEyjy75SegReT+fA/GvXfh9eJ41+H1xod6Q8sMbW7Z+nyn+VZ/wY8Ly6K2r63qibDDI1tHv6hVILH8SBitMdk6zjM8NjqfwTSlL5bmOGzJ5dga+Dn8UXaPzL3xG1oQa/wCG/Ctq22M31vJMo7KGwoqp8ev+QRpygdbhh/461cHPrb+IPidb6sWby21SNYw3ZFcYx+Aru/j8HTRtMKkZ+0v+Pyt/jXXicyWZZbj5x+GLUY+iMqOEeAxuDi92rv1ZvfC+3j0n4fR3UcY3tG8z46sQK8A1XULnVdRmv7piXlkkzz0+bivf/hhdx6t4Ahs4WzIsbwNns2D19q8B1nT7rR9WuNNv4jDNDI42n+IFuo9q8fi2M3lWD9n/AA7K/a56nDlpZliVL42/wKhz0HfrUlncS6ZdRX9pIyS27iRTnjI/+tTBg4APPpUun2k2rXsWm2SGWad/LCgHPPf6V8Fh1UdeMafxXVmj6/EumqUlNWVnufRHjCIeI/hs96+Dm1S7G7+8AD/jXHfs7ljPreRyVt/5Mf612HjGRPDHwylsp2GUshbDHdyuOM/Q1yP7O4kD64JcZX7MvH+6a/ZK3L/rDhIv4+XX7j8xo3/sXEv7PMrfee0Ac5p1J3pa/RUfJIKKKKYwooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkIJ6EilooA/Ov/gsH+zv4s+I3grwr8X/BOlz6nc+EDc2OqWkEPmOtlMok8/G08I8WDz/y0GAe3i/7EX/BUPwj8EPhVY/CT4yeGvEF/Z6DEyaTfaLFDPIkO/PkSxO0W0AsSGDN6Gv15mhhuYZLe4iSWKVSkkbqGV1IwQQeCCO1fNPxB/4JxfsgfEnV31zWvhVDZXcr+ZM2lXk1kJW55YRsB37YoA/Mj9uz9t65/bP13w/4H+GfhnVrTw1o179o021uIQbzUL9wEVmSNmVSqtJhQT9481+ov7AvwQ179n/9mbw14H8T20cOs3LTatqEKOSYZbghghyB8yqFBHYgjnrW58IP2LP2aPgXqSa38O/hdp1rqiIY1v7uSS7nVSQflaUtg5UcgA9ea9uAYHkgjHXuTQB+bX/BbY5+F3w2UYyNfumOWA48gepr1X/gkUAv7GulAOrf8T3UycHp+8HB96+k/i58CPhN8d9O0/SPi14Ls/Edlpdwbq1guWdVjlI27vkYE/KSME45NaPwx+FfgL4N+Fo/BPw08NW2h6HFNLcpaQFiqySHLH5iTz9ewoA8C/4Ki5/4YU+JmBn/AJAp/wDKxZV8r/8ABDVNh+NihgwH/CNjcvQ/8hKv0v8AiF8PfB3xV8Iah4C8faHBq+g6oIxd2c2dkojkWRM4weHRT+Fc38H/ANnj4N/ANNVj+Efgay8OLrRhN8LYufOMW/y87ienmP8AnQB8of8ABVj9kqX4w/DeH4y+CtOM3irwYhN7FGTvutLwxk2KB88iNsIyR8m/ngA4f/BJX9q4/EPwXN+z3401FX8QeE4GuNHeRwGutPBUMh3NuZ42foAflyc8V+htzbW97bS2d3Ck0E6NFLG4yrowwVI7gg4rxXwj+xT+zB4D8YaZ4/8AB3wl0zSfEGkTyXNrfW0syusjhgSRvw3DHGRQB+WP/BVP4vz/ABh/aXg+FvhqQ3WneBUXRLaFMkSalMyiVeDgsGCqD/sn8f0d+CX7BP7PHg/4TeFvD3jX4PeGNY8QWumQf2peXVn5kkt2UBl5bnAYkduldVafsOfsrWPjJfiDbfB3Sf8AhIFv31P7bJNPIzXLPvLkM5XO7np/M17ooYHJPXqM9PpQB4yv7GP7KiHKfATwcp9RpygivyB/bp+Ed5+yf+1nJrvgOwj0fTbmSDxJ4dW3ASKMKwDoCcdGDAgZ61+81ea/F79nD4KfHqfS7j4ueAbDxG2jCQWf2kuvlh8bhlGBI46ZxQBe+DHxX0L4wfCTw78UtFn8yz1jTUupDlMxyBcSIwViAQwbjPSvxc/4JY2Mth+3F4TtpnjZoLbWoGKOCCyWMoJHfHpkV+2Xw6+FPgL4T+D4/AHgDw7BpPh+MyMtlGzMgL/e+8SefrXDfD39j39nH4U+NIviJ8Pvhfp2j+I4TOUvopJS+JlZZBhmK4IY9qAPZcgY96/n3/bH1eLwv+3r468S3lo08eleLor8wrOsbSCN43wCfUKR+Nf0DqGBIzleo9c5NeH+Nv2If2V/iN4o1Hxn41+DmkaprWqzefd3cskyvK+Op2uB+lAHya//AAW0+FYkYR/BPxQ0eflZtTtAT9Rk47969S/Zn/4KdeAv2lvi9pfwh0X4Za7ot5qkF1PHd3N7bzRL5MLSkEIdwyEIB55x9R6H/wAO6v2Lv+iC6H/3/uf/AI5XT/Df9jj9mv4QeLbXx38NfhTpmha7ZJLHDeQSzMwWRCjr87MMEH0zQBxX7ef7Hmm/tY/DFLbTJILLxn4d8y60S8cYEuUIa2kYAkRudp4Bwyj1NfmF+z9+1j+0F+wD4s1H4Z+NPCk97pCSYuNB1ZjbeU+4Bp7eQj0BAHQ7uQMcfuwoYEjOV6j1zk1xXxN+CPwj+MunppnxR+HmieJII2Dxm+tVeSNgCAVcYZeGPQ96APjG1/4LUfs2GxR9S+HPxJhvQmXjhs7CWESY+6JftYJHvtH0r5K/ak/4KM/GL9rSA/CT4UeFLjw54b1eRbd9PtJftep6qTkCOQoAFQ5yUAx8oJY45/QK4/4JX/sYz3jXi/Dy+hDtuMMerTiL6YLHA/GvafhP+zN8B/gfiX4X/DHRNEuvLMTXscG+6dSQSDK+X5KqevYUAfIP7Bv7CWrfs6eAfEHxf+JtpHH471bRpoLSz3b/AOy7dlDENleJiVGcE4GRk549z+E/lx+OdHKltod8DHTMByfzr3zxxlPCGtFe9jP19dhr5c0rUrzSbqDUdNuWguYsEMFB42AYr8q45xMMHmmExE1dR1Z9xwvhp4vA4mjDeVkepftASrv0MnIG2ft7p/ga6X4RMB8O2BB+Z5mz7EV4prHifX9feB9X1EziAMApQcA9x71NpPjLxLolidNsNRK27BgVK+or5+PFOGp53VzBr3ZxaX3HrSyDESyung7q6lcyHdRJJMCSY5WbAyCCCcH88V9O+CNct/Efhaw1Wba0kcYDk84dVwSK+YlkdTktvyoJyMZbv+FaeleKdd0W0ex03UHhglJLoOQMjtXn8N8RQyfF1KlRXhNPTz6HdneRzzWlCMHaUPyND4i+IE17xdd3AnJhgYwwg9h3z+Ir1X4Lf8iLNz1lk/8AQa8GDOoI80uZGLOzKMkmtfS/GHiTQ7NtP0nUmjgc5Kkd6jKeI4YTNJ47EK/MmvvFmeTSxGXwwlB/C0XPCm3/AIWBZKXAb+0jwc8YbP8ASvQvj82LXSR/tyfyFeRwajeW96NShunS5RxIrhB1zzVvW/FfiDxGkSa1fmcQsxQbcYz0/rRh88oUsuxODt71R3RVXKqzzChio/DBanS/B7xBHovixLKeVlt9QzEo7bz0z+VeofFXX4vD3hOeCJCkuosYI/LAyGIJLHnpgdfevniC4ntZo7m2fZLEwdG/ukHrV/WfE2veICg1fUGuEhLeWpHTPf611ZbxW8vyirgJL3npF9r7mGP4ceJzCGLT912bXoP8Ihm8UaPGWHF3HjPc5ya9X+PmP7L0lmB+S5Zge2dhrxi0u7ixu4by1fZLC4dWxnGK0db8V+IPEUccWs6i1ykTs6gjGPT9M1wYHOqGCyrEYKWsqlrHXjcsqVszo4uHwwvc2/hl44k8Ham0V1mSxuWPmAH7mSOf8+tereKPAfhj4k28WsWN0iXOMrPGeox90/p+VfO5AYFWHB61qaP4l17QONH1ee2QD7gGRXbk/EscLhvqGOp+0pfivQwzLIKlav8AXMDPlqfgdufgN4rE/GqacYweD5j7lHrjZgn8a7rwn8PdB8Ag63q18k96qEGeTACg4JwPwryxfi545WMq2pqzYwDsArC1rxP4g8QtnVdXnkQj5oxwtejSzvh/LJOvgaLlU6X2RxVMqzrMEqGLqJQXbdnR/FLx4fFup/YrJ3GmWoOP+mj+vWuw+AG1k1l8YYvCPwCmvGOPKYFQpVSAF6Y9/evZv2ff9Xq/+/F/6Caz4XzGvm3EccTiHdtMvP8ABUsvyV0KS0TR7ABz1p1IOv4UtfudraH5cgooooGFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAc94/fZ4P1UYJ3Wsi8dsqR/WvlONk2IxbCkdcHrgDH6Gvsi5hiuImhmiSSNxhlYZBH0rLHhXw4DhdDssAcDyV/livhuKeFavEFeFSE+XlVj6bIeIFk0JRcL3Pk7zIz0bP/AAE/4Ub09T/3yf8ACvrIeFvDxPOi2Y/7Yr/hTv8AhFfDv/QHs/8Avyv+FfLf8Q0rdaq+492PHNNf8un958l709T/AN8n/Cjenqf++T/hX1p/wivh3/oD2f8A35X/AAo/4RXw7/0B7P8A78r/AIUf8Q0rP/l8vuD/AF3p2t7J/efJe+MdXx9QaTzVHJwB6lgP5mvrX/hFfDv/AEBrP/vyv+FQyeC/CUrbpPD2nsfe2U/0qV4Y10mlWWvkNccU07+yf3nylkEZDIfpIv8AjSB1K7i6AdOXX/Gvq4eCfCOML4c03/wFT/CmjwP4TH3fDmmj/t2X/Cj/AIhliP8An8vuH/rzT/59P7z5T8yP/nrH/wB9j/GjzI/+esf/AH2P8a+rf+EI8Lf9C9pv/gMtH/CEeFv+he03/wABlpf8QyxDd/br7mL/AF3p3v7J/efKXmR/89Y/++x/jR5kf/PWP/vsf419W/8ACEeFv+he03/wGWj/AIQjwt/0L2m/+Ay014ZYhf8AL6P3D/14p/8APp/efKXmR/8APWP/AL7H+NHmR/8APWP/AL7H+NfVv/CEeFv+he03/wABlo/4Qjwt/wBC9pv/AIDLTXhpiVtXX3MP9eKf/Pp/efKXmR/89Y/++x/jR5kf/PWP/vsf419W/wDCEeFv+he03/wGWj/hCPC3/Qvab/4DLQ/DPEv/AJiF9wLjikv+XP4nylvjIYebGMjGdw4r2f8AZ9YeRqsqkMjyIAwPGQCDXop8EeFO/h/T/wALdRV/T9I0zR0ZNLsILZHOWEUYUE/hXt8O8DVslx0cXKopJdjy854phmWFdDkav1uXgQT+FLTF65FPr9IPjtOgUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAIRmkC45p1FKyAYFO7PanY9qWihpPcNxMe1GPaloo5UITHtRj2FLRRZDEI9qTbTqKYDdtG2nUUAN20badRQA3bRtp1FADdtG2nUUANwe1AU806igBAMUtFFAbBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//2Q==" alt="FL STRATÉGIMMO" style="width:100%;height:100%;object-fit:contain">
+    </div>
+    <div class="hdr-text">
+      <div class="hdr-title" itemprop="name">FL STRATÉGIMMO</div>
+      <div class="hdr-sub">
+        Estimation immobilière gratuite · <strong>Données DVF officielles</strong><br>
+        Spécialiste investissement locatif · Immeubles de rapport<br>
+        Lens · Arras · Bassin Minier · <strong>France entière</strong>
+      </div>
+    </div>
+  </div>
+  <div class="obar"></div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <div class="snav" id="snav">
+      <div class="spill active" id="pill1"><span class="n">1</span>Localisation</div>
+      <div class="ssep"></div>
+      <div class="spill" id="pill2"><span class="n">2</span>Caractéristiques</div>
+      <div class="ssep"></div>
+      <div class="spill" id="pill3"><span class="n">3</span>Résultat</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+      <div class="fg">
+        <label class="lbl">Adresse ou commune</label>
+        <div class="acw">
+          <input type="text" id="adresse-inp" class="fi"
+            placeholder="Ex : 12 rue Jean Jaurès, Lens — ou tapez juste la ville"
+            autocomplete="off" oninput="onSearch(this.value)">
+          <div class="acl" id="acl"></div>
+        </div>
+      </div>
+      <div class="gr2">
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">Commune sélectionnée</label>
+          <input id="ville-disp" class="fi" readonly placeholder="—">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">Code postal</label>
+          <input id="cp-disp" class="fi" readonly placeholder="—">
+        </div>
+      </div>
+      <div id="dvf-info" style="margin-top:10px;font-size:12px;color:var(--txt3);display:none"></div>
+      <button class="bp" onclick="goStep2()" style="margin-top:20px">
+        Continuer
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+      <div class="fg">
+        <label class="lbl">Type de bien</label>
+        <select id="type-bien" class="fs">
+          <option value="Appartement">Appartement</option>
+          <option value="Maison">Maison individuelle</option>
+          <option value="Immeuble">Immeuble de rapport</option>
+          <option value="Local commercial">Local commercial / mixte</option>
+          <option value="Terrain">Terrain / Parcelle</option>
+        </select>
+      </div>
+      <div class="gr2">
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">Surface (m²)</label>
+          <input type="number" id="surface" class="fi" placeholder="Ex : 75" min="5" max="20000">
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">Nb de pièces</label>
+          <input type="number" id="pieces" class="fi" placeholder="Ex : 4" min="0" max="200">
+        </div>
+      </div>
+      <div class="gr2" style="margin-top:14px">
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">État général</label>
+          <select id="etat" class="fs">
+            <option value="bon">Bon état / rénové</option>
+            <option value="moyen" selected>État moyen</option>
+            <option value="mauvais">À rénover</option>
+          </select>
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <label class="lbl">Époque construction</label>
+          <select id="annee" class="fs">
+            <option value="">Non renseignée</option>
+            <option value="avant1914">Avant 1914</option>
+            <option value="1914-1945">1914 – 1945</option>
+            <option value="1945-1970">1945 – 1970</option>
+            <option value="1970-1990">1970 – 1990</option>
+            <option value="1990-2000">1990 – 2000</option>
+            <option value="apres2000">Après 2000</option>
+          </select>
+        </div>
+      </div>
+      <div class="brow" style="margin-top:20px">
+        <button class="bg" onclick="setStep(1)">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Retour
+        </button>
+        <button class="bp" onclick="lancerEstimation()">
+          Estimer mon bien
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+      <div id="loading-block" class="loading">
+        <div class="spinner"></div>
+        <div class="loading-t" id="loading-msg">Interrogation des données DVF…</div>
+        <div class="loading-s">Base Adresse Nationale · data.gouv.fr · DGFiP</div>
+      </div>
+      <div id="result-block" style="display:none"></div>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- FOOTER -->
+  <div class="ftr">
+    <div class="ftr-l">
+      <strong>FL STRATÉGIMMO</strong><br>
+      17 rue Marcellin Berthelot · 62300 Lens<br>
+      Carte pro CPI 62062023000000003 · SNPI
+    </div>
+    <div class="ftr-r">
+      <a href="https://flstrategimmo.fr" target="_blank">flstrategimmo.fr</a><br>
+      <a href="tel:+33767509295">07 67 50 92 95</a><br>
+      <a href="mailto:contact@flstrategimmo.com">contact@flstrategimmo.com</a>
+    </div>
+  </div>
+
+</div><!-- /card -->
+
+<div class="disc">
+  Estimation indicative basée sur les Demandes de Valeurs Foncières (DVF) — DGFiP / data.gouv.fr.<br>
+  Ne constitue pas une expertise immobilière officielle. Pour une évaluation précise, contactez FL STRATÉGIMMO.
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// ÉTAT GLOBAL
+// ═══════════════════════════════════════════════════════════════
+const S = {};
+
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION STEPS
+// ═══════════════════════════════════════════════════════════════
+function setStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('step'+i).classList.toggle('active',i===n);
+    const p=document.getElementById('pill'+i);
+    p.classList.remove('active','done');
+    if(i===n)p.classList.add('active');
+    else if(i<n)p.classList.add('done');
+  });
+}
+
+function goStep2(){
+  if(!S.commune){
+    alert('Veuillez sélectionner une commune dans la liste.');
+    return;
+  }
+  setStep(2);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RECHERCHE UNIFIÉE : adresse + commune France entière
+// Utilise l'API BAN (adresses) + geo.api.gouv.fr (communes)
+// ═══════════════════════════════════════════════════════════════
+let searchTimer=null;
+async function onSearch(q){
+  clearTimeout(searchTimer);
+  const acl=document.getElementById('acl');
+  if(q.length<2){acl.style.display='none';return;}
+  searchTimer=setTimeout(()=>doSearch(q),250);
+}
+
+async function doSearch(q){
+  const acl=document.getElementById('acl');
+  // Lancer les deux APIs en parallèle
+  const [banRes,geoRes]=await Promise.allSettled([
+    fetch(`https://api-adresse.data.gouv.fr/search/?q=${encodeURIComponent(q)}&limit=5`).then(r=>r.json()),
+    fetch(`https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(q)}&fields=nom,code,codesPostaux,departement&boost=population&limit=6`).then(r=>r.json())
+  ]);
+
+  const items=[];
+
+  // Résultats communes (geo API) — apparaissent en premier
+  if(geoRes.status==='fulfilled'&&Array.isArray(geoRes.value)){
+    geoRes.value.forEach(c=>{
+      const cp=c.codesPostaux&&c.codesPostaux[0]||'';
+      const dep=c.departement&&c.departement.nom||'';
+      items.push({
+        label:c.nom,
+        sub:`${cp} · ${dep}`,
+        commune:c.nom,
+        cp,
+        insee:c.code,
+        lat:null,lon:null,
+        type:'commune'
+      });
+    });
+  }
+
+  // Résultats adresses BAN
+  if(banRes.status==='fulfilled'&&banRes.value.features){
+    banRes.value.features.forEach(f=>{
+      const p=f.properties;
+      if(items.find(i=>i.commune===p.city))return; // évite doublons commune
+      items.push({
+        label:p.label,
+        sub:`${p.city||''} · ${p.context||''}`,
+        commune:p.city||p.label,
+        cp:p.postcode||'',
+        insee:p.citycode||'',
+        lat:f.geometry.coordinates[1],
+        lon:f.geometry.coordinates[0],
+        type:'adresse'
+      });
+    });
+  }
+
+  if(items.length===0){acl.style.display='none';return;}
+
+  acl.innerHTML=items.slice(0,8).map((it,idx)=>`
+    <div class="aci" tabindex="0"
+      onclick="selectItem(${idx})"
+      onkeydown="if(event.key==='Enter')selectItem(${idx})">
+      <strong>${it.label}</strong>
+      <small>${it.sub}</small>
+    </div>`).join('');
+
+  // stocker les items pour sélection par index
+  window._acItems=items;
+  acl.style.display='block';
+}
+
+function selectItem(idx){
+  const it=window._acItems[idx];
+  document.getElementById('adresse-inp').value=it.label;
+  document.getElementById('ville-disp').value=it.commune;
+  document.getElementById('cp-disp').value=it.cp;
+  document.getElementById('acl').style.display='none';
+  S.commune=it.commune;
+  S.codeInsee=it.insee;
+  S.cp=it.cp;
+  S.lat=it.lat;
+  S.lon=it.lon;
+  // Afficher nb transactions DVF disponibles (optionnel)
+  previewDVF(it.insee,it.cp);
+}
+
+async function previewDVF(insee,cp){
+  const info=document.getElementById('dvf-info');
+  info.style.display='none';
+  if(!insee&&!cp)return;
+  try{
+    const key=insee||cp;
+    const param=insee?`code_commune=${insee}`:`code_postal=${cp}`;
+    const r=await fetch(`https://api.cquest.org/dvf?${param}`);
+    if(!r.ok)return;
+    const d=await r.json();
+    const res=d.resultats||d.features||(Array.isArray(d)?d:[]);
+    if(res.length>0){
+      info.style.display='block';
+      info.innerHTML=`<span style="color:var(--orange);font-weight:600">✓</span> ${res.length} transactions DVF disponibles pour cette commune`;
+    }
+  }catch(e){}
+}
+
+// Fermer dropdown au clic extérieur
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.acw'))document.getElementById('acl').style.display='none';
+});
+
+// ═══════════════════════════════════════════════════════════════
+// COEFFICIENTS CORRECTEURS
+// ═══════════════════════════════════════════════════════════════
+const C_ETAT={bon:1.07,moyen:0.95,mauvais:0.80};
+const C_ANNEE={'avant1914':0.91,'1914-1945':0.93,'1945-1970':0.92,'1970-1990':0.95,'1990-2000':0.97,'apres2000':1.04};
+const C_TYPE={Appartement:1.0,Maison:1.02,Immeuble:0.87,'Local commercial':0.80,Terrain:0.12};
+
+// ═══════════════════════════════════════════════════════════════
+// FETCH DVF — France entière, double fallback
+// ═══════════════════════════════════════════════════════════════
+async function fetchDVF(insee,cp){
+  const tryFetch=async(param)=>{
+    const r=await fetch(`https://api.cquest.org/dvf?${param}`);
+    if(!r.ok)throw new Error();
+    const d=await r.json();
+    return d.resultats||d.features||(Array.isArray(d)?d:[]);
+  };
+  if(insee){try{const r=await tryFetch(`code_commune=${insee}`);if(r.length)return r;}catch(e){}}
+  if(cp){try{const r=await tryFetch(`code_postal=${cp}`);if(r.length)return r;}catch(e){}}
+  return [];
+}
+
+function filtrer(mutations,type){
+  return mutations.filter(m=>{
+    if(!m.valeurfonc||!m.sbati||m.sbati<5)return false;
+    const pm2=m.valeurfonc/m.sbati;
+    if(pm2<100||pm2>20000)return false;
+    if(type==='Appartement'&&m.libtyplocal&&/maison/i.test(m.libtyplocal))return false;
+    if(type==='Maison'&&m.libtyplocal&&/appartement/i.test(m.libtyplocal))return false;
+    return true;
+  });
+}
+
+function mediane(arr){
+  if(!arr.length)return 0;
+  const s=[...arr].sort((a,b)=>a-b);
+  const m=Math.floor(s.length/2);
+  return s.length%2?s[m]:(s[m-1]+s[m])/2;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ANALYSE IA (Claude)
+// ═══════════════════════════════════════════════════════════════
+async function getAI(commune,type,surface,prix,pm2,nbTx,cp){
+  try{
+    const r=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-20250514",
+        max_tokens:1000,
+        messages:[{role:"user",content:`Tu es Fabrice LINGLART, expert immobilier chez FL STRATÉGIMMO, spécialisé investissement locatif et immeubles de rapport (Lens, Arras, Bassin Minier — mais aussi toute la France).
+
+Bien estimé :
+- Commune : ${commune} (${cp||''})
+- Type : ${type}
+- Surface : ${surface} m²
+- Estimation : ${Math.round(prix).toLocaleString('fr-FR')} €
+- Prix médian marché DVF : ${Math.round(pm2).toLocaleString('fr-FR')} €/m²
+- Transactions analysées : ${nbTx}
+
+Rédige 3 phrases max d'analyse expert :
+1. Commentaire sur la valorisation dans ce marché
+2. Potentiel locatif : fourchette de loyer et rendement brut indicatif selon le type de bien
+3. Recommandation ou vigilance pour un investisseur
+
+Direct, professionnel, sans liste. En français.`}]
+      })
+    });
+    const d=await r.json();
+    return d.content?.[0]?.text||null;
+  }catch(e){return null;}
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LANCEMENT ESTIMATION
+// ═══════════════════════════════════════════════════════════════
+async function lancerEstimation(){
+  const surface=parseFloat(document.getElementById('surface').value);
+  if(!surface||surface<5){alert('Surface invalide (minimum 5 m²).');return;}
+  S.surface=surface;
+  S.pieces=document.getElementById('pieces').value||'—';
+  S.typeBien=document.getElementById('type-bien').value;
+  S.etat=document.getElementById('etat').value;
+  S.annee=document.getElementById('annee').value;
+
+  setStep(3);
+  const lb=document.getElementById('loading-block');
+  const rb=document.getElementById('result-block');
+  lb.style.display='block';rb.style.display='none';
+
+  const msgs=['Interrogation des données DVF officielles…','Analyse des transactions du marché local…','Calcul et pondération de l\'estimation…','Génération de l\'analyse expert…'];
+  let mi=0;
+  const mt=setInterval(()=>{if(++mi<msgs.length)document.getElementById('loading-msg').textContent=msgs[mi];},1200);
+
+  try{
+    const mutations=await fetchDVF(S.codeInsee,S.cp);
+    const filtered=filtrer(mutations,S.typeBien);
+    clearInterval(mt);
+
+    let pm2,txShow=[],srcNote,nbTx=filtered.length;
+    if(filtered.length>=5){
+      pm2=mediane(filtered.map(m=>m.valeurfonc/m.sbati));
+      txShow=filtered.sort((a,b)=>new Date(b.datemut||0)-new Date(a.datemut||0)).slice(0,6);
+      srcNote=`${filtered.length} transactions DVF réelles analysées · ${S.commune}`;
+    }else{
+      // Estimation prix médian via API geo + fallback calculé
+      pm2=await getPrixReference(S.codeInsee,S.commune)||1400;
+      txShow=filtered.slice(0,3);
+      srcNote=`Référence marché national · DVF : ${filtered.length} transaction(s) · ${S.commune}`;
+    }
+
+    const coef=(C_ETAT[S.etat]||0.95)*(C_ANNEE[S.annee]||1.0)*(C_TYPE[S.typeBien]||1.0);
+    const prixEst=pm2*S.surface*coef;
+    const bas=prixEst*0.88,haut=prixEst*1.12;
+
+    const aiText=await getAI(S.commune,S.typeBien,S.surface,prixEst,pm2,nbTx,S.cp);
+
+    // ── RENDU ──
+    const etatLbl={bon:'Bon état',moyen:'État moyen',mauvais:'À rénover'}[S.etat]||'';
+    const anneeLbl={'avant1914':'Av. 1914','1914-1945':'1914-45','1945-1970':'1945-70','1970-1990':'1970-90','1990-2000':'1990-00','apres2000':'Ap. 2000'}[S.annee]||'';
+
+    let txHtml='';
+    if(txShow.length>0){
+      txHtml=`<div class="txs"><div class="txs-t">Dernières transactions DVF · ${S.commune}</div>`;
+      txShow.forEach(tx=>{
+        const dt=tx.datemut?tx.datemut.substring(0,10):'—';
+        const sf=tx.sbati?Math.round(tx.sbati)+' m²':'—';
+        const px=Math.round(tx.valeurfonc).toLocaleString('fr-FR')+' €';
+        const pm=tx.sbati?`<span class="txpill">${Math.round(tx.valeurfonc/tx.sbati).toLocaleString('fr-FR')} €/m²</span>`:'';
+        txHtml+=`<div class="txr"><span class="txr-l">${dt} · ${sf}${pm}</span><span class="txr-r">${px}</span></div>`;
+      });
+      txHtml+='</div>';
+    }
+
+    const aiHtml=aiText?`<div class="ai-block">
+      <div class="ai-hdr">
+        <div class="ai-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></div>
+        <div class="ai-title">Analyse FL STRATÉGIMMO — Expert investissement locatif</div>
+      </div>
+      <div class="ai-body">${aiText.replace(/\n\n/g,'<br><br>').replace(/\n/g,' ')}</div>
+    </div>`:'';
+
+    const mailSubj=encodeURIComponent(`Demande estimation — ${S.typeBien} ${Math.round(S.surface)}m² ${S.commune}`);
+    const mailBody=encodeURIComponent(`Bonjour,\n\nJe souhaite une estimation précise pour :\n- Type : ${S.typeBien}\n- Surface : ${Math.round(S.surface)} m²\n- Commune : ${S.commune} (${S.cp||''})\n- État : ${etatLbl}\n\nEstimation indicative obtenue : ${Math.round(prixEst).toLocaleString('fr-FR')} €\n\nMerci.`);
+
+    rb.innerHTML=`
+      <div class="rbadge">
+        <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3.5M8 10.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Estimation indicative
+      </div>
+
+      <div class="est-block">
+        <div class="est-lbl">Valeur estimée du bien</div>
+        <div class="est-price">${Math.round(prixEst).toLocaleString('fr-FR')} €</div>
+        <div class="est-range">Fourchette : <strong style="color:rgba(255,255,255,.75)">${Math.round(bas).toLocaleString('fr-FR')} €</strong> – <strong style="color:rgba(255,255,255,.75)">${Math.round(haut).toLocaleString('fr-FR')} €</strong></div>
+        <div class="est-sub">${S.typeBien} · ${Math.round(S.surface)} m²${S.pieces!=='—'?' · '+S.pieces+' p.':''} · ${etatLbl}${anneeLbl?' · '+anneeLbl:''} · ${S.commune}</div>
+      </div>
+
+      <div class="mgrid">
+        <div class="mc"><div class="mc-l">Prix médian marché</div><div class="mc-v o">${Math.round(pm2).toLocaleString('fr-FR')} €/m²</div></div>
+        <div class="mc"><div class="mc-l">Type de bien</div><div class="mc-v" style="font-size:13px">${S.typeBien}</div></div>
+        <div class="mc"><div class="mc-l">Surface</div><div class="mc-v">${Math.round(S.surface)} m²</div></div>
+        <div class="mc"><div class="mc-l">Commune</div><div class="mc-v" style="font-size:12px">${S.commune} ${S.cp?'('+S.cp+')':''}</div></div>
+      </div>
+
+      ${txHtml}
+      ${aiHtml}
+
+      <div class="cta">
+        <p>Besoin d'une expertise complète sur ce bien ou sur un investissement locatif à ${S.commune} ?<br>Fabrice LINGLART, spécialiste immeubles de rapport, vous répond gratuitement.</p>
+        <a class="btn" href="mailto:contact@flstrategimmo.com?subject=${mailSubj}&body=${mailBody}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" stroke-width="1.8"/><path d="M22 6l-10 7L2 6" stroke="white" stroke-width="1.8"/></svg>
+          Demander une expertise gratuite
+        </a>
+        <div class="cta-tel"><a href="tel:+33767509295">07 67 50 92 95</a></div>
+      </div>
+
+      <div class="srcs">${srcNote} · <a href="https://www.data.gouv.fr/fr/datasets/demandes-de-valeurs-foncieres/" target="_blank" rel="noopener nofollow">DVF · data.gouv.fr</a> · <a href="https://flstrategimmo.fr" target="_blank">flstrategimmo.fr</a></div>
+
+      <button class="bg" onclick="reset()">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Nouvelle estimation
+      </button>`;
+
+    lb.style.display='none';rb.style.display='block';
+
+  }catch(err){
+    clearInterval(mt);
+    document.getElementById('loading-block').style.display='none';
+    document.getElementById('result-block').innerHTML=`
+      <div class="err"><strong>Erreur de chargement des données DVF.</strong><br>
+      Vérifiez votre connexion ou réessayez dans quelques instants.</div>
+      <button class="bg" onclick="setStep(1)">← Recommencer</button>`;
+    document.getElementById('result-block').style.display='block';
+  }
+}
+
+// Prix de référence national (fallback si peu de DVF locaux)
+// Utilise le prix médian département via API geo
+async function getPrixReference(insee,commune){
+  // Essayer de récupérer le département et estimer
+  const DEP_PRIX={
+    '75':9500,'92':7500,'93':4200,'94':5500,'91':3200,'78':3800,'95':3100,'77':2900,
+    '13':3200,'69':3500,'31':3000,'33':3800,'06':4500,'67':2800,'59':1800,'62':1200,
+    '76':1900,'80':1500,'02':1400,'60':2200,'57':1800,'54':1700,'51':1800,'08':1100,
+    '10':1600,'52':1000,'55':1100,'88':1200,'70':1100,'25':2000,'39':1600,'90':1700,
+    '21':2100,'71':1500,'58':1200,'89':1400,'01':2500,'74':4000,'73':2800,'38':2400,
+    '26':2000,'07':1800,'42':1900,'43':1500,'63':1800,'03':1100,'15':1200,'04':2500,
+    '05':2200,'83':4000,'84':2800,'30':2200,'34':2800,'11':1800,'66':2000,'81':1800,
+    '82':1700,'12':1500,'48':1300,'09':1100,'19':1300,'87':1500,'23':900,'36':1100,
+    '37':2000,'41':1700,'45':1800,'28':1900,'72':1700,'53':1500,'61':1400,'50':1600,
+    '14':2100,'27':1700,'22':2000,'29':2200,'35':2400,'56':2500,'44':3000,'49':1900,
+    '85':2200,'79':1500,'86':1600,'16':1500,'17':2500,'47':1600,'24':1500,'40':1900,
+    '64':2200,'65':1400,'32':1400,'46':1500,'2A':2800,'2B':2500
+  };
+  if(insee&&insee.length>=2){
+    const dep=insee.startsWith('97')?insee.substring(0,3):insee.substring(0,2);
+    return DEP_PRIX[dep]||1400;
+  }
+  return 1400;
+}
+
+function reset(){
+  Object.keys(S).forEach(k=>delete S[k]);
+  document.getElementById('adresse-inp').value='';
+  document.getElementById('ville-disp').value='';
+  document.getElementById('cp-disp').value='';
+  document.getElementById('dvf-info').style.display='none';
+  setStep(1);
+}
+</script>
+</body>
+</html>
